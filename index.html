@@ -4,9 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Axone — Independent Equity Research</title>
-  <meta name="description" content="Axone — independent, institutional-grade equity research by Rezi Sabashvili. DCF, trading comps, precedent transactions and football-field valuations, published openly." />
+  <meta name="description" content="Axone — independent equity research by Rezi Sabashvili. DCF, trading comps, precedent transactions and football-field valuations, published openly." />
   <meta name="author" content="Rezi Sabashvili" />
   <meta name="color-scheme" content="light dark" />
+
+  <link rel="icon" type="image/png" href="assets/img/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/img/favicon.png" />
 
   <link rel="preconnect" href="data:," />
   <link rel="stylesheet" href="css/styles.css" />
@@ -51,15 +54,24 @@
       <div class="container hero__inner">
         <p class="badge" data-reveal>
           <span class="badge__dot" aria-hidden="true"></span>
-          <span data-i18n="hero.badge">New deep-dive every month</span>
+          <span class="badge__text" data-i18n="hero.badge">New deep-dive every month</span>
         </p>
         <h1 class="hero__title" data-reveal data-i18n="hero.title">Axone — Independent Equity Research</h1>
-        <p class="hero__sub" data-reveal data-i18n="hero.sub">Institutional-grade valuation work, published openly.</p>
+        <p class="hero__sub" data-reveal data-i18n="hero.sub">Valuation work, published openly.</p>
         <div class="hero__cta" data-reveal>
           <a href="#research" class="btn btn--primary" data-i18n="hero.cta1">Read the latest analysis</a>
           <a class="btn btn--ghost" href="assets/docs/Pernod_Ricard_Pitchbook.pptx"
              download="Axone — Pernod Ricard (RI FP) — Pitchbook.pptx" data-i18n="hero.cta2">Download the pitchbook</a>
         </div>
+        <p class="hero__ticker" data-reveal>
+          <span class="hero__ticker-label" data-i18n="hero.covering">Coverage universe</span>
+          <span class="text-cycle" aria-hidden="true">
+            <span class="text-cycle__word is-active">Pernod Ricard</span>
+            <span class="text-cycle__word">LVMH</span>
+            <span class="text-cycle__word">ASML</span>
+            <span class="text-cycle__word">BNP Paribas</span>
+          </span>
+        </p>
       </div>
     </section>
 
@@ -223,6 +235,22 @@
           <li data-reveal><span class="pipe__no">02</span><div><span class="pipe__name">ASML <span class="tk">(ASML&nbsp;NA)</span></span><span class="pipe__note" data-i18n="pipe.asml">Semiconductors — EUV monopoly vs cyclicality and export restrictions.</span></div></li>
           <li data-reveal><span class="pipe__no">03</span><div><span class="pipe__name">BNP Paribas / Société Générale <span class="tk">(BNP&nbsp;FP / GLE&nbsp;FP)</span></span><span class="pipe__note" data-i18n="pipe.bank">A bank — valued on P/B vs ROE, dividend discount and P/E rather than DCF.</span></div></li>
         </ol>
+      </div>
+    </section>
+
+    <!-- ========================== SUBSCRIBE ========================== -->
+    <section class="section section--alt" id="subscribe">
+      <div class="container narrow">
+        <p class="eyebrow" data-reveal data-i18n="sub.eyebrow">Stay updated</p>
+        <h2 class="h2" data-reveal data-i18n="sub.title">Get notified of new analyses</h2>
+        <p class="lede" data-reveal data-i18n="sub.lede">One email when a new deep-dive goes live. No spam — unsubscribe anytime.</p>
+        <form class="sub-form" id="subscribe-form" data-reveal novalidate>
+          <label class="sr-only" for="sub-email" data-i18n="sub.label">Email address</label>
+          <input class="sub-input" id="sub-email" name="email" type="email" required
+                 placeholder="you@email.com" autocomplete="email" />
+          <button class="btn btn--primary" type="submit" data-i18n="sub.btn">Notify me</button>
+          <p class="sub-msg" id="sub-msg" role="status" aria-live="polite"></p>
+        </form>
       </div>
     </section>
   </main>

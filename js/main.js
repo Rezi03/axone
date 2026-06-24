@@ -16,8 +16,9 @@
     "nav.about":"À propos","nav.research":"Recherche","nav.method":"Méthodologie","nav.contact":"Contact",
     "hero.badge":"Une analyse approfondie chaque mois",
     "hero.title":"Axone — Recherche actions indépendante",
-    "hero.sub":"Des valorisations de qualité institutionnelle, publiées en accès libre.",
+    "hero.sub":"Des valorisations publiées en accès libre.",
     "hero.cta1":"Lire la dernière analyse","hero.cta2":"Télécharger le pitchbook",
+    "hero.covering":"Univers de couverture",
     "hero.m1":"Couverture","hero.m2":"Méthodes par valeur","hero.m3":"Établi à partir de","hero.m3v":"Documents publics",
     "about.eyebrow":"À propos","about.title":"Ce qu'est Axone",
     "about.p1":"Axone, c'est la recherche actions indépendante de Rezi Sabashvili. Chaque valeur est analysée comme en banque — DCF, comparables boursiers, transactions précédentes et synthèse en football field — entièrement à partir de documents publics.",
@@ -48,6 +49,9 @@
     "pipe.lvmh":"Luxe — somme des parties entre mode & maroquinerie, vins & spiritueux, montres.",
     "pipe.asml":"Semi-conducteurs — monopole EUV face à la cyclicité et aux restrictions d'export.",
     "pipe.bank":"Une banque — valorisée en P/B vs ROE, dividend discount model et P/E plutôt qu'en DCF.",
+    "sub.eyebrow":"Restez informé","sub.title":"Soyez notifié des nouvelles analyses",
+    "sub.lede":"Un e-mail à chaque nouvelle analyse publiée. Pas de spam — désinscription à tout moment.",
+    "sub.label":"Adresse e-mail","sub.btn":"Me notifier",
     "contact.title":"Contact & liens","contact.portfolio":"Portfolio",
     "contact.disc":"À but pédagogique uniquement. Ne constitue ni un conseil en investissement, ni une offre, ni une sollicitation. Établi à partir de documents publics."
   };
@@ -247,6 +251,92 @@
       if (e.key === "Escape") close(); else if (e.key === "ArrowLeft") step(-1); else if (e.key === "ArrowRight") step(1);
     });
   }
+
+  /* ----------------------- 12. text cycle ------------------------- */
+  (function () {
+    var words = $$(".text-cycle__word");
+    if (words.length < 2 || reduced) return;
+    var i = 0;
+    setInterval(function () {
+      words[i].classList.remove("is-active");
+      i = (i + 1) % words.length;
+      words[i].classList.add("is-active");
+    }, 2200);
+  })();
+
+  /* --------------------- 13. subscribe form ----------------------- */
+  (function () {
+    var form = $("#subscribe-form");
+    if (!form) return;
+    var input = $("#sub-email"), msg = $("#sub-msg"), btn = $("button", form);
+    // Owner inbox that receives each subscriber (already public in the footer).
+    var OWNER = "rezi.sabashvili@outlook.com";
+    // The link included in the confirmation email = wherever this site is hosted.
+    var SITE = location.origin + location.pathname;
+
+    var COPY = {
+      en: {
+        subject: "Axone — subscription confirmed",
+        auto: "Thank you for subscribing to Axone.\n\n"
+            + "You'll receive an email whenever a new equity research deep-dive is published.\n\n"
+            + "The site: " + SITE + "\n\n"
+            + "— Rezi Sabashvili · Axone Equity Research",
+        ok: "You're subscribed — please check your inbox.",
+        err: "Something went wrong. Please try again later.",
+        invalid: "Please enter a valid email address.",
+        sending: "Sending…"
+      },
+      fr: {
+        subject: "Axone — inscription confirmée",
+        auto: "Merci de votre inscription à Axone.\n\n"
+            + "Vous recevrez un e-mail à chaque nouvelle analyse publiée.\n\n"
+            + "Le site : " + SITE + "\n\n"
+            + "— Rezi Sabashvili · Axone Equity Research",
+        ok: "Inscription enregistrée — vérifiez votre boîte mail.",
+        err: "Une erreur est survenue. Réessayez plus tard.",
+        invalid: "Veuillez saisir une adresse e-mail valide.",
+        sending: "Envoi…"
+      }
+    };
+    function copy() { return root.getAttribute("lang") === "fr" ? COPY.fr : COPY.en; }
+    function setMsg(t, state) {
+      if (!msg) return;
+      msg.textContent = t;
+      msg.classList.remove("sub-msg--ok", "sub-msg--err");
+      if (state === "ok") msg.classList.add("sub-msg--ok");
+      else if (state === "err") msg.classList.add("sub-msg--err");
+    }
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var c = copy();
+      var email = (input.value || "").trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setMsg(c.invalid, "err"); input.focus(); return; }
+
+      if (btn) btn.disabled = true;
+      setMsg(c.sending, null);
+
+      var data = new FormData();
+      data.append("email", email);
+      data.append("language", root.getAttribute("lang") === "fr" ? "fr" : "en");
+      data.append("site", SITE);
+      data.append("_subject", c.subject);
+      // FormSubmit emails this text back to the subscriber, in the site's language.
+      data.append("_autoresponse", c.auto);
+      data.append("_captcha", "false");
+      data.append("_template", "table");
+
+      fetch("https://formsubmit.co/ajax/" + OWNER, {
+        method: "POST",
+        headers: { "Accept": "application/json" },
+        body: data
+      })
+        .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+        .then(function () { setMsg(c.ok, "ok"); form.reset(); })
+        .catch(function () { setMsg(c.err, "err"); })
+        .then(function () { if (btn) btn.disabled = false; });
+    });
+  })();
 
   /* ------------------------ year + initial lang ------------------- */
   var y = $("#year"); if (y) y.textContent = new Date().getFullYear();
