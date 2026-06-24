@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axone — Independent Equity Research</title>
+  <meta name="description" content="Axone — independent, institutional-grade equity research by Rezi Sabashvili. DCF, trading comps, precedent transactions and football-field valuations, published openly." />
+  <meta name="author" content="Rezi Sabashvili" />
+  <meta name="color-scheme" content="light dark" />
+  <!-- Apply saved theme/lang before paint to avoid a flash. -->
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("axone-theme") ||
+          (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        document.documentElement.setAttribute("data-theme", t);
+        var l = localStorage.getItem("axone-lang");
+        if (l) document.documentElement.setAttribute("lang", l);
+      } catch (e) {}
+    })();
+  </script>
+  <link rel="preconnect" href="data:," />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
+
+  <!-- ============================ HEADER ============================ -->
+  <header class="site-header" id="top">
+    <div class="container site-header__inner">
+      <a class="wordmark" href="#top" aria-label="Axone — home">AXONE</a>
+
+      <nav class="primary-nav" id="primary-nav" aria-label="Primary">
+        <a href="#about" class="nav-link" data-i18n="nav.about">About</a>
+        <a href="#research" class="nav-link" data-i18n="nav.research">Research</a>
+        <a href="#methodology" class="nav-link" data-i18n="nav.method">Methodology</a>
+        <a href="#contact" class="nav-link" data-i18n="nav.contact">Contact</a>
+      </nav>
+
+      <div class="header-tools">
+        <button class="tool-btn" id="lang-toggle" type="button" aria-label="Switch language">
+          <span class="lang-cur">EN</span><span class="lang-sep">/</span><span class="lang-oth">FR</span>
+        </button>
+        <button class="tool-btn tool-btn--icon" id="theme-toggle" type="button" aria-label="Toggle theme" aria-pressed="false">
+          <svg class="ic ic-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M5 5l2 2M17 17l2 2M2 12h3M19 12h3M5 19l2-2M17 7l2-2"/></svg>
+          <svg class="ic ic-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 0 1 9.5 4 7 7 0 1 0 20 14.5Z"/></svg>
+        </button>
+        <button class="nav-burger" id="nav-burger" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============================ HERO ============================ -->
+    <section class="hero" id="hero">
+      <div class="hero__grid" aria-hidden="true"></div>
+      <div class="hero__glow" aria-hidden="true"></div>
+
+      <div class="container hero__inner">
+        <p class="badge" data-reveal>
+          <span class="badge__dot" aria-hidden="true"></span>
+          <span data-i18n="hero.badge">New deep-dive every month</span>
+        </p>
+        <h1 class="hero__title" data-reveal data-i18n="hero.title">Axone — Independent Equity Research</h1>
+        <p class="hero__sub" data-reveal data-i18n="hero.sub">Institutional-grade valuation work, published openly.</p>
+        <div class="hero__cta" data-reveal>
+          <a href="#research" class="btn btn--primary" data-i18n="hero.cta1">Read the latest analysis</a>
+          <a class="btn btn--ghost" href="assets/docs/Pernod_Ricard_Pitchbook.pptx"
+             download="Axone — Pernod Ricard (RI FP) — Pitchbook.pptx" data-i18n="hero.cta2">Download the pitchbook</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ ABOUT ============================ -->
+    <section class="section" id="about">
+      <div class="container narrow">
+        <p class="eyebrow" data-reveal data-i18n="about.eyebrow">About</p>
+        <h2 class="h2" data-reveal data-i18n="about.title">What Axone is</h2>
+        <p class="lede" data-reveal data-i18n="about.p1">Axone is the independent equity research of Rezi Sabashvili. Every name is valued the way the sell side does it — DCF, trading comps, precedent transactions and a football-field synthesis — built entirely from public filings.</p>
+        <p data-reveal data-i18n="about.p2">Each analysis ships with its full Excel model and pitchbook, so every assumption, bridge and sensitivity is open. No black box: WACC is built bottom-up, EBIT is defined consistently, and the target weighs each method explicitly.</p>
+        <p data-reveal data-i18n="about.p3">One deep-dive per month, minimum. First published: Pernod Ricard SA (RI&nbsp;FP).</p>
+      </div>
+    </section>
+
+    <!-- ========================== RESEARCH ========================== -->
+    <section class="section section--alt" id="research">
+      <div class="container">
+        <p class="eyebrow" data-reveal data-i18n="research.eyebrow">Research</p>
+        <h2 class="h2" data-reveal data-i18n="research.title">Coverage</h2>
+
+        <p class="group-label" data-reveal data-i18n="research.published">Published</p>
+        <a class="cov cov--live" href="#pernod" data-reveal>
+          <span class="cov__no">01</span>
+          <span class="cov__body">
+            <span class="cov__name">Pernod Ricard SA <span class="tk">(RI&nbsp;FP)</span></span>
+            <span class="cov__meta">
+              <span class="chip chip--buy">BUY</span>
+              <span class="cov__num">Target €108 · <span class="pos">+68%</span></span>
+            </span>
+            <span class="cov__tag" data-i18n="research.tagPernod">Consumer staples · Spirits</span>
+          </span>
+          <span class="cov__go" data-i18n="research.read">Read deep-dive →</span>
+        </a>
+
+        <p class="group-label" data-reveal data-i18n="research.soon">Coming soon</p>
+        <ul class="cov-grid">
+          <li class="cov cov--soon" data-reveal>
+            <span class="cov__no">02</span>
+            <span class="cov__body">
+              <span class="cov__name">LVMH <span class="tk">(MC&nbsp;FP)</span></span>
+              <span class="cov__tag" data-i18n="research.tagLvmh">Luxury · Sum-of-the-parts</span>
+            </span>
+            <span class="cov__status" data-i18n="research.statusSoon">Soon</span>
+          </li>
+          <li class="cov cov--soon" data-reveal>
+            <span class="cov__no">03</span>
+            <span class="cov__body">
+              <span class="cov__name">ASML <span class="tk">(ASML&nbsp;NA)</span></span>
+              <span class="cov__tag" data-i18n="research.tagAsml">Semiconductors · Geopolitics</span>
+            </span>
+            <span class="cov__status" data-i18n="research.statusSoon">Soon</span>
+          </li>
+          <li class="cov cov--soon" data-reveal>
+            <span class="cov__no">04</span>
+            <span class="cov__body">
+              <span class="cov__name">BNP Paribas <span class="tk">(BNP&nbsp;FP)</span></span>
+              <span class="cov__tag" data-i18n="research.tagBank">Banks · P/B vs ROE</span>
+            </span>
+            <span class="cov__status" data-i18n="research.statusSoon">Soon</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ====================== PERNOD DEEP-DIVE ====================== -->
+    <section class="section" id="pernod">
+      <div class="container">
+        <p class="eyebrow" data-reveal data-i18n="pernod.eyebrow">Featured analysis · 01</p>
+
+        <div class="dd-head" data-reveal>
+          <div class="dd-head__id">
+            <h2 class="h2">Pernod Ricard SA <span class="tk">(RI FP)</span></h2>
+            <span class="chip chip--buy">BUY</span>
+          </div>
+          <p class="dd-head__line">
+            <span data-i18n="pernod.target">Target</span> €108
+            <span class="dot">·</span>
+            <span class="pos"><span data-i18n="pernod.upside">Upside</span> +68%</span>
+            <span class="dot">·</span>
+            <span data-i18n="pernod.current">Current</span> €64
+          </p>
+        </div>
+
+        <ul class="stats" aria-label="Key statistics">
+          <li data-reveal><span class="stats__v"><span class="count" data-to="108" data-prefix="€">€0</span></span><span class="stats__l" data-i18n="pernod.s1">Target price</span></li>
+          <li data-reveal><span class="stats__v pos"><span class="count" data-to="68" data-prefix="+" data-suffix="%">+0%</span></span><span class="stats__l" data-i18n="pernod.s2">Upside to current</span></li>
+          <li data-reveal><span class="stats__v"><span class="count" data-to="7.3" data-suffix="%" data-dec="1">0%</span></span><span class="stats__l">WACC</span></li>
+          <li data-reveal><span class="stats__v" data-i18n="pernod.s4v">Blended</span><span class="stats__l" data-i18n="pernod.s4">DCF / Comps / Precedents</span></li>
+        </ul>
+
+        <h3 class="h3" data-reveal data-i18n="pernod.thesisT">Investment thesis</h3>
+        <ul class="thesis">
+          <li data-reveal><b data-i18n="pernod.t1b">Trading at a ~24% discount to peers</b><span data-i18n="pernod.t1"> — 8.1x EV/EBITDA vs a 12.4x peer median, despite the #2 global position and a premium portfolio (Jameson, Absolut, Martell, Chivas).</span></li>
+          <li data-reveal><b data-i18n="pernod.t2b">FY26 transition year, growth resuming</b><span data-i18n="pernod.t2"> — Q3 organic net sales +0.1% after a soft H1; guidance +3% to +6% organic p.a. over FY27–29.</span></li>
+          <li data-reveal><b data-i18n="pernod.t3b">Clear deleveraging</b><span data-i18n="pernod.t3"> — net debt/EBITDA from ~3.4x to ~2.0x by FY30, on ~80% cash conversion.</span></li>
+          <li data-reveal><b data-i18n="pernod.t4b">M&amp;A floors valuation</b><span data-i18n="pernod.t4"> — spirits precedents at ~16.9x median EV/EBITDA imply control-premium value above €108.</span></li>
+        </ul>
+
+        <div class="learn" data-reveal>
+          <button class="learn__btn" id="gallery-toggle" type="button" aria-expanded="false" aria-controls="gallery">
+            <span data-i18n="pernod.showG">Learn more — view all 12 exhibits</span>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="gallery" id="gallery" hidden>
+            <div class="gallery__grid" id="gallery-grid"><!-- exhibits injected by JS --></div>
+          </div>
+        </div>
+
+        <h3 class="h3" data-reveal data-i18n="pernod.dlT">Downloads</h3>
+        <div class="dl-row" data-reveal>
+          <a class="btn btn--outline" href="assets/docs/Pernod_Ricard_Pitchbook.pptx"
+             download="Axone — Pernod Ricard (RI FP) — Pitchbook.pptx">
+            <span data-i18n="pernod.dlPitch">Full pitchbook</span><span class="btn__ext">.pptx</span>
+          </a>
+          <a class="btn btn--outline" href="assets/docs/Pernod_Ricard_Model.xlsx"
+             download="Axone — Pernod Ricard (RI FP) — Valuation Model.xlsx">
+            <span data-i18n="pernod.dlModel">Underlying model</span><span class="btn__ext">.xlsx</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= METHODOLOGY ========================= -->
+    <section class="section section--alt" id="methodology">
+      <div class="container narrow">
+        <p class="eyebrow" data-reveal data-i18n="method.eyebrow">Methodology</p>
+        <h2 class="h2" data-reveal data-i18n="method.title">How every name is valued</h2>
+        <p class="lede" data-reveal data-i18n="method.lede">Three independent methods, triangulated into one target.</p>
+
+        <div class="m-grid">
+          <article class="m-card" data-reveal><h3 data-i18n="method.c1t">Discounted cash flow</h3><p data-i18n="method.c1">Unlevered FCF discounted at WACC; terminal value cross-checked via Gordon growth and an exit EV/EBITDA multiple. EBIT = Profit from Recurring Operations, taxed at a normalized 25%.</p></article>
+          <article class="m-card" data-reveal><h3 data-i18n="method.c2t">WACC build-up</h3><p data-i18n="method.c2">Cost of equity via CAPM (risk-free, levered beta, ERP), blended with after-tax cost of debt at target structure. Net debt on an IFRS-16 basis.</p></article>
+          <article class="m-card" data-reveal><h3 data-i18n="method.c3t">Trading comparables</h3><p data-i18n="method.c3">EV/EBITDA and EV/Sales against a curated peer set, benchmarked to the peer median to isolate the embedded discount or premium.</p></article>
+          <article class="m-card" data-reveal><h3 data-i18n="method.c4t">Precedent transactions</h3><p data-i18n="method.c4">Control-deal multiples from comparable sector M&amp;A, setting a takeout floor alongside the standalone DCF.</p></article>
+        </div>
+
+        <div class="blend" data-reveal>
+          <p data-i18n="method.blend">The blended target weights each method, with a two-way sensitivity grid (WACC × terminal assumption) published for every name.</p>
+          <div class="wbar" id="wbar" aria-hidden="true">
+            <span class="wbar__seg wbar__seg--dcf" data-w="50"></span>
+            <span class="wbar__seg wbar__seg--comps" data-w="35"></span>
+            <span class="wbar__seg wbar__seg--prec" data-w="15"></span>
+          </div>
+          <ul class="wkey">
+            <li><i class="sw sw--dcf"></i><b>50%</b> <span data-i18n="method.wDcf">DCF</span></li>
+            <li><i class="sw sw--comps"></i><b>35%</b> <span data-i18n="method.wComps">Trading comps</span></li>
+            <li><i class="sw sw--prec"></i><b>15%</b> <span data-i18n="method.wPrec">Precedents</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================== PIPELINE ========================== -->
+    <section class="section" id="pipeline">
+      <div class="container narrow">
+        <p class="eyebrow" data-reveal data-i18n="pipe.eyebrow">Pipeline</p>
+        <h2 class="h2" data-reveal data-i18n="pipe.title">Next analyses</h2>
+        <p class="lede" data-reveal data-i18n="pipe.lede">One per month. In order:</p>
+        <ol class="pipe">
+          <li data-reveal><span class="pipe__no">01</span><div><span class="pipe__name">LVMH <span class="tk">(MC&nbsp;FP)</span></span><span class="pipe__note" data-i18n="pipe.lvmh">Luxury — sum-of-the-parts across fashion & leather, wines & spirits, watches.</span></div></li>
+          <li data-reveal><span class="pipe__no">02</span><div><span class="pipe__name">ASML <span class="tk">(ASML&nbsp;NA)</span></span><span class="pipe__note" data-i18n="pipe.asml">Semiconductors — EUV monopoly vs cyclicality and export restrictions.</span></div></li>
+          <li data-reveal><span class="pipe__no">03</span><div><span class="pipe__name">BNP Paribas / Société Générale <span class="tk">(BNP&nbsp;FP / GLE&nbsp;FP)</span></span><span class="pipe__note" data-i18n="pipe.bank">A bank — valued on P/B vs ROE, dividend discount and P/E rather than DCF.</span></div></li>
+        </ol>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================ FOOTER ============================ -->
+  <footer class="site-footer" id="contact">
+    <div class="container site-footer__top">
+      <div>
+        <p class="wordmark wordmark--ft">AXONE</p>
+        <p class="ft-org">Axone Equity Research</p>
+        <p class="ft-name">Rezi Sabashvili</p>
+      </div>
+      <nav class="ft-links" aria-label="Contact">
+        <p class="subhead" data-i18n="contact.title">Contact &amp; links</p>
+        <a class="ft-link" href="https://rezi03.github.io/portfolio/" target="_blank" rel="noopener" data-i18n="contact.portfolio">Portfolio</a>
+        <a class="ft-link" href="https://www.linkedin.com/in/rezisabashvili/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="ft-link" href="mailto:rezi.sabashvili@outlook.com">rezi.sabashvili@outlook.com</a>
+      </nav>
+    </div>
+    <div class="container site-footer__bottom">
+      <p class="disclaimer" data-i18n="contact.disc">Educational purposes only. Not investment advice, an offer, or a solicitation. Built from public filings.</p>
+      <p class="copyright">© <span id="year"></span> Axone Equity Research · Rezi Sabashvili</p>
+    </div>
+  </footer>
+
+  <!-- ============================ LIGHTBOX ============================ -->
+  <div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="Exhibit viewer" hidden>
+    <div class="lb__backdrop" data-close></div>
+    <button class="lb__close" data-close type="button" aria-label="Close">×</button>
+    <button class="lb__nav lb__prev" data-prev type="button" aria-label="Previous">‹</button>
+    <figure class="lb__fig">
+      <img class="lb__img" src="" alt="" />
+      <figcaption class="lb__cap"></figcaption>
+    </figure>
+    <button class="lb__nav lb__next" data-next type="button" aria-label="Next">›</button>
+  </div>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>
