@@ -2,6 +2,7 @@
 /* AXONE — main.js · vanilla, no dependencies, no external requests    */
 /* 1 i18n · 2 theme · 3 lang · 4 burger · 5 nav spy · 6 smooth-scroll   */
 /* 7 reveal · 8 counters · 9 weight bar · 10 gallery+lightbox · 11 hero */
+/* Coverage content comes from js/analyses.js (rendered in step 0).    */
 /* ================================================================== */
 (function () {
   "use strict";
@@ -17,44 +18,201 @@
     "hero.badge":"Une analyse approfondie chaque mois",
     "hero.title":"Axone — Recherche actions indépendante",
     "hero.sub":"Des valorisations publiées en accès libre.",
-    "hero.cta1":"Lire la dernière analyse","hero.cta2":"Télécharger le pitchbook",
+    "hero.cta1":"Lire la dernière analyse","hero.cta2":"Télécharger le dernier pitchbook",
     "hero.covering":"Univers de couverture",
     "hero.m1":"Couverture","hero.m2":"Méthodes par valeur","hero.m3":"Établi à partir de","hero.m3v":"Documents publics",
     "about.eyebrow":"À propos","about.title":"Ce qu'est Axone",
     "about.p1":"Axone, c'est la recherche actions indépendante de Rezi Sabashvili. Chaque valeur est analysée comme en banque — DCF, comparables boursiers, transactions précédentes et synthèse en football field — entièrement à partir de documents publics.",
     "about.p2":"Chaque analyse est livrée avec son modèle Excel et son pitchbook : hypothèses, bridges et sensibilités sont ouverts. Aucune boîte noire — le WACC est construit de bas en haut, l'EBIT est défini de façon cohérente, et la cible pondère explicitement chaque méthode.",
-    "about.p3":"Une analyse approfondie par mois, au minimum. Première publiée : Pernod Ricard SA (RI&nbsp;FP).",
     "research.eyebrow":"Recherche","research.title":"Couverture","research.published":"Publié","research.soon":"À venir",
-    "research.read":"Lire l'analyse →","research.tagPernod":"Consommation · Spiritueux",
-    "research.tagLvmh":"Luxe · Somme des parties","research.tagAsml":"Semi-conducteurs · Géopolitique","research.tagBank":"Banques · P/B vs ROE",
-    "research.statusSoon":"Bientôt",
-    "pernod.eyebrow":"Analyse phare · 01","pernod.target":"Cible","pernod.upside":"Potentiel","pernod.current":"Cours actuel",
-    "pernod.s1":"Prix cible","pernod.s2":"Potentiel vs cours","pernod.s4v":"Mixte","pernod.s4":"DCF / Comps / Précédents",
-    "pernod.thesisT":"Thèse d'investissement",
-    "pernod.t1b":"Décote d'environ 24% vs les pairs","pernod.t1":" — 8,1x EV/EBITDA contre une médiane de 12,4x, malgré la position de n°2 mondial et un portefeuille premium (Jameson, Absolut, Martell, Chivas).",
-    "pernod.t2b":"FY26 année de transition, la croissance repart","pernod.t2":" — ventes nettes organiques T3 à +0,1% après un S1 mou ; guidance +3% à +6% organique p.a. sur FY27–29.",
-    "pernod.t3b":"Désendettement net","pernod.t3":" — dette nette/EBITDA de ~3,4x à ~2,0x d'ici FY30, sur ~80% de conversion en cash.",
-    "pernod.t4b":"Le M&A pose un plancher de valeur","pernod.t4":" — les précédents dans les spiritueux à ~16,9x EV/EBITDA médian impliquent une valeur avec prime de contrôle au-dessus de 108 €.",
-    "pernod.showG":"En savoir plus — voir les 12 exhibits","pernod.hideG":"Masquer les exhibits",
-    "pernod.dlT":"Téléchargements","pernod.dlPitch":"Pitchbook complet","pernod.dlModel":"Modèle sous-jacent",
+    "research.read":"Lire l'analyse →","research.statusSoon":"Bientôt",
+    // shared deep-dive labels (per-analysis text lives in js/analyses.js)
+    "dd.target":"Cible","dd.upside":"Potentiel","dd.current":"Cours actuel",
+    "dd.s1":"Prix cible","dd.s2":"Potentiel vs cours","dd.thesisT":"Thèse d'investissement",
+    "dd.hideG":"Masquer les exhibits",
+    "dd.dlT":"Téléchargements","dd.dlPitch":"Pitchbook complet","dd.dlModel":"Modèle sous-jacent",
     "method.eyebrow":"Méthodologie","method.title":"Comment chaque valeur est valorisée",
     "method.lede":"Trois méthodes indépendantes, triangulées en une cible unique.",
     "method.c1t":"Flux de trésorerie actualisés","method.c1":"FCF désendettés actualisés au WACC ; valeur terminale recoupée via croissance de Gordon et multiple de sortie EV/EBITDA. EBIT = résultat opérationnel courant, fiscalisé à un taux normalisé de 25%.",
     "method.c2t":"Construction du WACC","method.c2":"Coût des fonds propres via CAPM (taux sans risque, bêta endetté, prime de risque), combiné au coût de la dette après impôt à la structure cible. Dette nette en norme IFRS-16.",
     "method.c3t":"Comparables boursiers","method.c3":"EV/EBITDA et EV/Ventes face à un échantillon de pairs sélectionné, comparé à la médiane pour isoler la décote ou la prime intégrée.",
     "method.c4t":"Transactions précédentes","method.c4":"Multiples de transactions de contrôle issus de M&A sectoriels comparables, posant un plancher de rachat aux côtés du DCF stand-alone.",
-    "method.blend":"La cible mixte pondère chaque méthode, avec une grille de sensibilité à deux entrées (WACC × hypothèse terminale) publiée pour chaque valeur.",
-    "method.wDcf":"DCF","method.wComps":"Comparables","method.wPrec":"Précédents",
+    "method.c5t":"Somme des parties","method.c5":"Pour les groupes multi-activités, chaque pôle est valorisé sur l'EV/EBIT de ses propres pairs cotés, puis les valeurs sont additionnées en valeur d'entreprise et ramenées aux capitaux propres, ce qui rend explicite toute décote de conglomérat.",
+    "method.c6t":"Banques : actualisation des dividendes & P/TBV vs RoTE","method.c6":"Les dépôts et la dette sont la matière première d'une banque : VE, WACC et FCFF ne s'appliquent pas. La valeur vient du capital distribuable : un DDM sur le capital excédentaire au coût des fonds propres du CAPM, un P/TBV justifié = (RoTE − g) / (Ke − g), et des comparables et précédents lus en P/TBV face au RoTE.",
+    "method.blend":"La cible mixte pondère trois méthodes, adaptées au modèle économique de chaque valeur, avec une grille de sensibilité à deux entrées (taux d'actualisation × hypothèse terminale) publiée pour chaque valeur.",
     "pipe.eyebrow":"Pipeline","pipe.title":"Prochaines analyses","pipe.lede":"Une par mois. Dans l'ordre :",
-    "pipe.lvmh":"Luxe — somme des parties entre mode & maroquinerie, vins & spiritueux, montres.",
-    "pipe.asml":"Semi-conducteurs — monopole EUV face à la cyclicité et aux restrictions d'export.",
-    "pipe.bank":"Une banque — valorisée en P/B vs ROE, dividend discount model et P/E plutôt qu'en DCF.",
     "sub.eyebrow":"Restez informé","sub.title":"Soyez notifié des nouvelles analyses",
     "sub.lede":"Un e-mail à chaque nouvelle analyse publiée. Pas de spam — désinscription à tout moment.",
     "sub.label":"Adresse e-mail","sub.btn":"Me notifier",
     "contact.title":"Contact & liens","contact.portfolio":"Portfolio",
     "contact.disc":"À but pédagogique uniquement. Ne constitue ni un conseil en investissement, ni une offre, ni une sollicitation. Établi à partir de documents publics."
   };
+  /* ------------------ 0. RENDER FROM js/analyses.js ---------------- */
+  // Each block is written in English with a data-i18n key; the French text
+  // is registered in FR, so the language switch below works unchanged.
+  var DATA = window.AXONE_DATA || { published: [], upcoming: [] };
+  var PUB = DATA.published, UP = DATA.upcoming;
+  var LATEST = PUB[PUB.length - 1];
+  var TODO = "TODO";
+  function has(v) { return v != null && v !== ""; }
+  function val(v) { return has(v) ? v : TODO; }
+  // register FR text for a key, return the EN text for the markup
+  function tr(key, o) {
+    o = o || {};
+    FR[key] = has(o.fr) ? o.fr : TODO;
+    return has(o.en) ? o.en : TODO;
+  }
+  function nb(s) { return String(val(s)).replace(/ /g, "&nbsp;"); }
+  function pct(v) { return has(v) ? (v >= 0 ? "+" : "−") + Math.abs(v) + "%" : TODO; }
+  function eur(v) { return has(v) ? "€" + v : TODO; }
+  function upCls(v) { return has(v) && v < 0 ? "neg" : "pos"; }
+  function showLabel(a, lang) {
+    var n = a.exhibits ? a.exhibits.en.length : 0;
+    return (lang === "fr" ? "En savoir plus — voir les {n} exhibits" : "Learn more — view all {n} exhibits").replace("{n}", n);
+  }
+  function count(v, pre, suf, dec) {
+    if (!has(v)) return TODO;
+    return '<span class="count" data-to="' + v + '"' +
+      (pre ? ' data-prefix="' + pre + '"' : "") + (suf ? ' data-suffix="' + suf + '"' : "") +
+      (dec ? ' data-dec="' + dec + '"' : "") + ">" + (pre || "") + "0" + (suf || "") + "</span>";
+  }
+
+  function renderCoverage() {
+    var pub = $("#cov-published"), soon = $("#cov-soon");
+    if (pub) pub.innerHTML = PUB.map(function (a) {
+      return '<a class="cov cov--live" href="#' + a.id + '" data-reveal>' +
+        '<span class="cov__no">' + a.no + "</span>" +
+        '<span class="cov__body">' +
+          '<span class="cov__name">' + a.name + ' <span class="tk">(' + nb(a.ticker) + ")</span></span>" +
+          '<span class="cov__meta">' +
+            '<span class="chip chip--' + String(val(a.rating)).toLowerCase() + '">' + val(a.rating) + "</span>" +
+            '<span class="cov__num"><span data-i18n="dd.target">Target</span> ' + eur(a.target) +
+              ' · <span class="' + upCls(a.upside) + '">' + pct(a.upside) + "</span></span>" +
+          "</span>" +
+          '<span class="cov__tag" data-i18n="' + a.id + '.tag">' + tr(a.id + ".tag", a.tag) + "</span>" +
+        "</span>" +
+        '<span class="cov__go" data-i18n="research.read">Read deep-dive →</span></a>';
+    }).join("");
+    if (soon) soon.innerHTML = UP.map(function (u) {
+      return '<li class="cov cov--soon" data-reveal>' +
+        '<span class="cov__no">' + u.no + "</span>" +
+        '<span class="cov__body">' +
+          '<span class="cov__name">' + u.name + ' <span class="tk">(' + nb(u.ticker) + ")</span></span>" +
+          '<span class="cov__tag" data-i18n="up.' + u.id + '.tag">' + tr("up." + u.id + ".tag", u.tag) + "</span>" +
+        "</span>" +
+        '<span class="cov__status" data-i18n="research.statusSoon">Soon</span></li>';
+    }).join("");
+    // hide the "Coming soon" label when nothing is queued
+    if (soon && !UP.length && soon.previousElementSibling) soon.previousElementSibling.hidden = true;
+  }
+
+  function renderDeepDive(a, i) {
+    var k = a.id, m = a.metric || {};
+    FR[k + ".eyebrow"] = "Analyse phare · " + a.no;
+    FR[k + ".showG"] = showLabel(a, "fr");
+    var thesis = (a.thesis || []).map(function (t, j) {
+      var n = j + 1;
+      return '<li data-reveal><b data-i18n="' + k + ".t" + n + 'b">' + tr(k + ".t" + n + "b", t.b) + "</b>" +
+        '<span data-i18n="' + k + ".t" + n + '">' + tr(k + ".t" + n, t.t) + "</span></li>";
+    }).join("");
+    var f = a.files || {}, dlName = "Axone — " + a.short + " (" + a.ticker + ") — ";
+    return '<section class="section' + (i % 2 ? " section--alt" : "") + '" id="' + k + '" aria-labelledby="' + k + '-title">' +
+      '<div class="container">' +
+        '<p class="eyebrow" data-reveal data-i18n="' + k + '.eyebrow">Featured analysis · ' + a.no + "</p>" +
+        '<div class="dd-head" data-reveal>' +
+          '<div class="dd-head__id">' +
+            '<h2 class="h2" id="' + k + '-title">' + a.name + ' <span class="tk">(' + val(a.ticker) + ")</span></h2>" +
+            '<span class="chip chip--' + String(val(a.rating)).toLowerCase() + '">' + val(a.rating) + "</span>" +
+          "</div>" +
+          '<p class="dd-head__line">' +
+            '<span data-i18n="dd.target">Target</span> ' + eur(a.target) +
+            ' <span class="dot">·</span> ' +
+            '<span class="' + upCls(a.upside) + '"><span data-i18n="dd.upside">Upside</span> ' + pct(a.upside) + "</span>" +
+            ' <span class="dot">·</span> ' +
+            '<span data-i18n="dd.current">Current</span> ' + eur(a.current) +
+          "</p>" +
+        "</div>" +
+        '<ul class="stats" aria-label="Key statistics">' +
+          '<li data-reveal><span class="stats__v">' + count(a.target, "€") + '</span><span class="stats__l" data-i18n="dd.s1">Target price</span></li>' +
+          '<li data-reveal><span class="stats__v ' + upCls(a.upside) + '">' + (has(a.upside) ? count(Math.abs(a.upside), a.upside >= 0 ? "+" : "−", "%") : TODO) + '</span><span class="stats__l" data-i18n="dd.s2">Upside to current</span></li>' +
+          '<li data-reveal><span class="stats__v">' + count(m.value, "", "%", m.dec) + '</span><span class="stats__l" data-i18n="' + k + '.s3">' + tr(k + ".s3", m.label) + "</span></li>" +
+          '<li data-reveal><span class="stats__v" data-i18n="' + k + '.s4v">' + tr(k + ".s4v", a.method) + '</span><span class="stats__l" data-i18n="' + k + '.s4">' + tr(k + ".s4", a.methodDetail) + "</span></li>" +
+        "</ul>" +
+        '<h3 class="h3" data-reveal data-i18n="dd.thesisT">Investment thesis</h3>' +
+        '<ul class="thesis">' + thesis + "</ul>" +
+        '<div class="learn" data-reveal>' +
+          '<button class="learn__btn" id="' + k + '-gallery-toggle" data-gallery="' + k + '" type="button" aria-expanded="false" aria-controls="' + k + '-gallery">' +
+            '<span data-i18n="' + k + '.showG">' + showLabel(a, "en") + "</span>" +
+            '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>' +
+          "</button>" +
+          '<div class="gallery" id="' + k + '-gallery" hidden>' +
+            '<div class="gallery__grid" id="' + k + '-gallery-grid" data-gallery="' + k + '"></div>' +
+          "</div>" +
+        "</div>" +
+        '<h3 class="h3" data-reveal data-i18n="dd.dlT">Downloads</h3>' +
+        '<div class="dl-row" data-reveal>' +
+          '<a class="btn btn--outline" href="' + val(f.pitch) + '" download="' + dlName + 'Pitchbook.pptx">' +
+            '<span data-i18n="dd.dlPitch">Full pitchbook</span><span class="btn__ext">.pptx</span></a>' +
+          '<a class="btn btn--outline" href="' + val(f.model) + '" download="' + dlName + 'Valuation Model.xlsx">' +
+            '<span data-i18n="dd.dlModel">Underlying model</span><span class="btn__ext">.xlsx</span></a>' +
+        "</div>" +
+      "</div></section>";
+  }
+
+  function renderBlend() {
+    var el = $("#blend-list"); if (!el) return;
+    var seg = ["dcf", "comps", "prec"]; // colour slots 1-2-3
+    el.innerHTML = PUB.map(function (a) {
+      var w = a.weights || [];
+      return '<div class="blend__item">' +
+        '<p class="subhead blend__name"><span class="cov__no">' + a.no + "</span> " + a.short + ' <span class="tk">(' + nb(a.ticker) + ")</span></p>" +
+        '<div class="wbar" aria-hidden="true">' + w.map(function (x, j) {
+          return '<span class="wbar__seg wbar__seg--' + seg[j % 3] + '" data-w="' + (has(x.w) ? x.w : 0) + '"></span>';
+        }).join("") + "</div>" +
+        '<ul class="wkey">' + w.map(function (x, j) {
+          var key = "method.w." + a.id + "." + j;
+          return '<li><i class="sw sw--' + seg[j % 3] + '"></i><b>' + (has(x.w) ? x.w + "%" : TODO) + "</b> " +
+            '<span data-i18n="' + key + '">' + tr(key, x.label) + "</span></li>";
+        }).join("") + "</ul></div>";
+    }).join("");
+  }
+
+  function renderPipeline() {
+    var el = $("#pipe-list"); if (!el) return;
+    el.innerHTML = UP.map(function (u) {
+      return '<li data-reveal><span class="pipe__no">' + u.no + "</span><div>" +
+        '<span class="pipe__name">' + u.name + ' <span class="tk">(' + nb(u.ticker) + ")</span></span>" +
+        '<span class="pipe__note" data-i18n="up.' + u.id + '.note">' + tr("up." + u.id + ".note", u.note) + "</span></div></li>";
+    }).join("");
+  }
+
+  function renderHero() {
+    var cyc = $("#hero-cycle");
+    if (cyc) cyc.innerHTML = PUB.map(function (a) { return a.short; })
+      .concat(UP.map(function (u) { return u.name; }))
+      .map(function (n, i) { return '<span class="text-cycle__word' + (i ? "" : " is-active") + '">' + n + "</span>"; }).join("");
+    if (!LATEST) return;
+    var cta = $("#hero-latest"); if (cta) cta.setAttribute("href", "#" + LATEST.id);
+    var dl = $("#hero-pitch");
+    if (dl && LATEST.files) {
+      dl.setAttribute("href", LATEST.files.pitch);
+      dl.setAttribute("download", "Axone — " + LATEST.short + " (" + LATEST.ticker + ") — Pitchbook.pptx");
+    }
+    var p3 = $("#about-p3"), first = PUB[0];
+    if (p3 && first) {
+      var f = first.name + " (" + nb(first.ticker) + ")", l = LATEST.name + " (" + nb(LATEST.ticker) + ")";
+      p3.innerHTML = "One deep-dive per month, minimum. First published: " + f + ". Latest: " + l + ".";
+      FR["about.p3"] = "Une analyse approfondie par mois, au minimum. Première publiée : " + f + ". Dernière : " + l + ".";
+    }
+  }
+
+  renderCoverage();
+  var dd = $("#deep-dives");
+  if (dd) dd.innerHTML = PUB.map(renderDeepDive).join("");
+  renderBlend();
+  renderPipeline();
+  renderHero();
+
   // English originals captured from the DOM so we can switch back.
   var EN = {};
   var nodes = $$("[data-i18n]");
@@ -70,11 +228,9 @@
     try { localStorage.setItem("axone-lang", lang); } catch (e) {}
     var cur = $(".lang-cur"), oth = $(".lang-oth");
     if (cur && oth) { cur.textContent = lang.toUpperCase(); oth.textContent = lang === "fr" ? "EN" : "FR"; }
-    // refresh gallery captions + learn-more toggle label
+    // refresh gallery captions + learn-more toggle labels
     buildGallery();
-    var gt = $("#gallery-toggle"), gw = $("#gallery");
-    if (gt && gw) gt.querySelector("span").innerHTML = gw.hidden
-      ? (dict["pernod.showG"] || EN["pernod.showG"]) : (dict["pernod.hideG"] || "Hide exhibits");
+    $$(".learn__btn[data-gallery]").forEach(syncToggle);
   }
 
   /* ---------------------------- 2. THEME -------------------------- */
@@ -112,7 +268,8 @@
   /* --------------------------- 5. NAV SPY ------------------------- */
   var links = $$(".nav-link");
   var byId = {}; links.forEach(function (l) { byId[l.getAttribute("href").slice(1)] = l; });
-  var map = { about:"about", research:"research", pernod:"research", pipeline:"research", methodology:"methodology", contact:"contact" };
+  var map = { about:"about", research:"research", pipeline:"research", methodology:"methodology", contact:"contact" };
+  PUB.forEach(function (a) { map[a.id] = "research"; });
   var watched = Object.keys(map).map(function (id) { return document.getElementById(id); }).filter(Boolean);
   if (watched.length) {
     var spy = new IntersectionObserver(function (es) {
@@ -176,8 +333,7 @@
   });
 
   /* ------------------------- 9. WEIGHT BAR ------------------------ */
-  var wbar = $("#wbar");
-  if (wbar) {
+  $$(".wbar").forEach(function (wbar) {
     var wio = new IntersectionObserver(function (es, o) {
       es.forEach(function (e) {
         if (e.isIntersecting) {
@@ -189,56 +345,67 @@
       });
     }, { threshold: .4 });
     wio.observe(wbar);
-  }
+  });
 
   /* -------------------- 10. GALLERY + LIGHTBOX -------------------- */
-  var CAP_EN = ["Valuation summary (football field)","EV/EBITDA vs peers","Multiples vs peer median","M&A precedents","EV→equity bridge","WACC build-up","Net sales trajectory","Margin expansion","Net sales by region","Deleveraging path","Implied value by method","DCF sensitivity heatmap"];
-  var CAP_FR = ["Synthèse de valorisation (football field)","EV/EBITDA vs pairs","Multiples vs médiane des pairs","Précédents M&A","Bridge VE→capitaux propres","Construction du WACC","Trajectoire des ventes nettes","Expansion des marges","Ventes nettes par région","Trajectoire de désendettement","Valeur implicite par méthode","Heatmap de sensibilité du DCF"];
-  function caps() { return root.getAttribute("lang") === "fr" ? CAP_FR : CAP_EN; }
+  // One gallery per analysis; the lightbox browses the gallery it was opened from.
+  var byKey = {}; PUB.forEach(function (a) { byKey[a.id] = a; });
+  function caps(a) { var x = a.exhibits || { en: [], fr: [] }; return root.getAttribute("lang") === "fr" ? x.fr : x.en; }
+  function exSrc(a, id) { return a.exhibits.dir + "chart_" + id + ".png"; }
 
-  var grid = $("#gallery-grid");
   function buildGallery() {
-    if (!grid) return;
-    var c = caps();
-    grid.innerHTML = c.map(function (cap, i) {
-      var id = String(i + 1).padStart(2, "0");
-      return '<figure class="ex">' +
-        '<button class="ex__btn" type="button" data-i="' + i + '" aria-label="Open exhibit ' + id + '">' +
-        '<img src="assets/img/chart_' + id + '.png" alt="' + cap.replace(/"/g, "") + '" loading="lazy" ' +
-        'onerror="this.closest(\'.ex__btn\').classList.add(\'miss\');this.onerror=null;" /></button>' +
-        '<figcaption><span class="ex__no">' + id + '</span>' + cap + '</figcaption></figure>';
-    }).join("");
+    $$(".gallery__grid[data-gallery]").forEach(function (grid) {
+      var a = byKey[grid.getAttribute("data-gallery")]; if (!a) return;
+      grid.innerHTML = caps(a).map(function (cap, i) {
+        var id = String(i + 1).padStart(2, "0");
+        return '<figure class="ex">' +
+          '<button class="ex__btn" type="button" data-i="' + i + '" aria-label="Open exhibit ' + id + '">' +
+          '<img src="' + exSrc(a, id) + '" alt="' + cap.replace(/"/g, "") + '" loading="lazy" ' +
+          'onerror="this.closest(\'.ex__btn\').classList.add(\'miss\');this.onerror=null;" /></button>' +
+          '<figcaption><span class="ex__no">' + id + '</span>' + cap + '</figcaption></figure>';
+      }).join("");
+    });
   }
   buildGallery();
 
-  var gToggle = $("#gallery-toggle"), gWrap = $("#gallery");
-  if (gToggle && gWrap) {
-    gToggle.addEventListener("click", function () {
-      var open = gWrap.hidden; gWrap.hidden = !open;
-      gToggle.setAttribute("aria-expanded", open);
-      var dict = root.getAttribute("lang") === "fr" ? FR : EN;
-      gToggle.querySelector("span").innerHTML = open
-        ? (dict["pernod.hideG"] || "Hide exhibits") : (dict["pernod.showG"] || EN["pernod.showG"]);
-    });
+  function syncToggle(btn) {
+    var k = btn.getAttribute("data-gallery"), wrap = document.getElementById(k + "-gallery");
+    if (!wrap) return;
+    var dict = root.getAttribute("lang") === "fr" ? FR : EN;
+    btn.querySelector("span").innerHTML = wrap.hidden
+      ? (dict[k + ".showG"] || EN[k + ".showG"]) : (dict["dd.hideG"] || "Hide exhibits");
   }
+  $$(".learn__btn[data-gallery]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var wrap = document.getElementById(btn.getAttribute("data-gallery") + "-gallery");
+      var open = wrap.hidden; wrap.hidden = !open;
+      btn.setAttribute("aria-expanded", open);
+      syncToggle(btn);
+    });
+  });
 
   // Lightbox
   var lb = $("#lightbox"), lbImg = $(".lb__img", lb), lbCap = $(".lb__cap", lb), cur = -1, lastFocus = null;
+  var curA = null, curGrid = null;
+  function exBtn(i) { return curGrid ? $('.ex__btn[data-i="' + i + '"]', curGrid) : null; }
   function show(i) {
-    var n = caps().length; cur = (i + n) % n;
+    var n = caps(curA).length; cur = (i + n) % n;
     var id = String(cur + 1).padStart(2, "0");
-    var btn = $('.ex__btn[data-i="' + cur + '"]');
+    var btn = exBtn(cur);
     if (btn && btn.classList.contains("miss")) { return; } // skip placeholders
-    lbImg.src = "assets/img/chart_" + id + ".png";
-    lbImg.alt = caps()[cur];
-    lbCap.innerHTML = '<span class="ex__no">' + id + "</span>" + caps()[cur];
+    lbImg.src = exSrc(curA, id);
+    lbImg.alt = caps(curA)[cur];
+    lbCap.innerHTML = '<span class="ex__no">' + id + "</span>" + caps(curA)[cur];
   }
   function open(i) { lastFocus = document.activeElement; show(i); lb.hidden = false; document.body.style.overflow = "hidden"; $(".lb__close", lb).focus(); }
   function close() { lb.hidden = true; document.body.style.overflow = ""; if (lastFocus) lastFocus.focus(); }
-  function step(d) { var n = caps().length; for (var k = 0; k < n; k++) { cur += d; var b = $('.ex__btn[data-i="' + ((cur + n) % n) + '"]'); if (b && !b.classList.contains("miss")) { show(cur); return; } } }
-  if (grid) grid.addEventListener("click", function (e) {
-    var b = e.target.closest(".ex__btn"); if (!b || b.classList.contains("miss")) return;
-    open(parseInt(b.getAttribute("data-i"), 10));
+  function step(d) { var n = caps(curA).length; for (var k = 0; k < n; k++) { cur += d; var b = exBtn((cur + n) % n); if (b && !b.classList.contains("miss")) { show(cur); return; } } }
+  $$(".gallery__grid[data-gallery]").forEach(function (grid) {
+    grid.addEventListener("click", function (e) {
+      var b = e.target.closest(".ex__btn"); if (!b || b.classList.contains("miss")) return;
+      curA = byKey[grid.getAttribute("data-gallery")]; curGrid = grid;
+      open(parseInt(b.getAttribute("data-i"), 10));
+    });
   });
   if (lb) {
     lb.addEventListener("click", function (e) {

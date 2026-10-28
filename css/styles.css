@@ -64,6 +64,7 @@ a{color:var(--accent);text-decoration:none}
 img{max-width:100%;display:block}
 b,strong{font-weight:600;color:var(--ink)}
 .pos{color:var(--pos)}
+.neg{color:var(--red)}
 /* aligned numerals everywhere figures appear — precise, tabular feel */
 .stats__v,.count,.cov__num,.dd-head__line,.wkey b,.chip{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
 ::selection{background:var(--accent);color:#fff}
@@ -200,6 +201,7 @@ b,strong{font-weight:600;color:var(--ink)}
 .cov__meta{display:flex;align-items:center;flex-wrap:wrap;gap:.75rem}
 .cov__num{font-weight:600;font-size:.95rem;color:var(--ink)}
 .cov__tag{font-size:.8125rem;color:var(--muted)}
+.cov-list{display:grid;gap:1rem}
 .cov--live{border-left:3px solid var(--green);cursor:pointer}
 .cov--live:hover{transform:translateY(-3px);border-color:var(--accent);box-shadow:0 22px 46px -26px rgba(var(--shadow),.6)}
 .cov__go{font-weight:600;font-size:.9rem;color:var(--accent);white-space:nowrap;transition:transform var(--d) var(--e)}
@@ -212,6 +214,8 @@ b,strong{font-weight:600;color:var(--ink)}
   border:1px solid var(--rule);border-radius:999px;padding:.25rem .7rem;white-space:nowrap}
 .chip{display:inline-flex;align-items:center;font-size:.78rem;font-weight:700;letter-spacing:.09em;padding:.3rem .65rem;border-radius:5px;color:#fff}
 .chip--buy{background:var(--green)}
+.chip--hold{background:var(--muted)}
+.chip--sell{background:var(--red)}
 
 /* -------------------------- 8. DEEP-DIVE -------------------------- */
 .dd-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:1rem 2rem;
@@ -258,6 +262,9 @@ b,strong{font-weight:600;color:var(--ink)}
 .m-card p{margin:0;font-size:1rem}
 .blend{background:var(--surface);border:1px solid var(--rule);border-radius:var(--r);padding:1.5rem 1.7rem}
 .blend p{margin:0 0 1.2rem;font-size:1rem}
+.blend__item + .blend__item{margin-top:1.6rem;padding-top:1.4rem;border-top:1px solid var(--hairline)}
+.blend .blend__name{margin:0 0 .7rem;font-size:.78rem}
+.blend__name .cov__no{font-size:inherit;margin-right:.35ch}
 .wbar{display:flex;height:12px;width:100%;border-radius:999px;overflow:hidden;background:var(--hairline)}
 .wbar__seg{height:100%;width:0;transition:width 1s var(--eo)}
 .wbar__seg--dcf{background:var(--navy)} .wbar__seg--comps{background:var(--accent)} .wbar__seg--prec{background:var(--accent-2)}
